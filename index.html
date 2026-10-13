@@ -704,7 +704,7 @@
   const featGrid = document.getElementById('feat-grid');
   featGrid.innerHTML = products.filter(p => p.featured).map(p => `
     <a class="feat-card" href="https://wa.me/${phone}?text=${encodeURIComponent('Hola, me interesa pedir ' + p.name + '. ¿Podrían confirmarme disponibilidad y detalles, por favor?')}" target="_blank" rel="noreferrer">
-      <div class="feat-photo">${p.id === 'alfajores' ? `<img class="swap-primary" src="img/alfajores-plato-nueva.jpg" alt="Alfajores de Estación Dulce Yenny"><img class="swap-secondary" src="img/alfajores-envase.jpg" alt="Alfajores · segunda foto">` : cardImageMarkup(p)}</div>
+      <div class="feat-photo">${p.id === 'alfajores' ? `<img class="swap-primary" src="img/alfajores-favoritos-nueva.jpg?v=2" alt="Alfajores de Estación Dulce Yenny"><img class="swap-secondary" src="img/alfajores-envase.jpg" alt="Alfajores · segunda foto">` : cardImageMarkup(p)}</div>
       <div class="feat-body"><span class="cat">${p.label}</span><h3>${p.name}</h3><span class="price">Desde ${p.prices[0][1]}</span></div>
     </a>`).join('');
 
