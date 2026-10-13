@@ -333,6 +333,19 @@
   .product-sheet-close:hover{background:var(--brand-pale);}
   @media (max-width:700px){.product-sheet{grid-template-columns:1fr;max-height:94vh;}.product-sheet-visual{min-height:360px;padding:18px;}.product-carousel{min-height:320px;}.product-carousel img,.product-carousel .fallback{min-height:320px;border-radius:14px;}.product-sheet-visual .fallback{min-height:320px;}.product-sheet-copy{padding:30px 24px 26px;}}
 
+  .availability{display:inline-flex;align-items:center;gap:6px;color:var(--brand-deep);background:var(--brand-pale);border:1px solid var(--line);border-radius:100px;padding:6px 9px;font-size:10px;font-weight:700;margin-top:12px;}
+  .availability.is-consult{background:#FFF7D8;border-color:#E8D37A;color:#735C08;}
+  .delivery-panel{background:var(--brand-pale);border:1px solid var(--line);border-radius:24px;padding:30px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:stretch;}
+  .delivery-intro{background:var(--brand-deep);color:#F1FBF5;border-radius:18px;padding:30px;}
+  .delivery-intro h3{font-family:var(--serif);font-size:clamp(25px,3vw,38px);line-height:1.05;margin:8px 0 12px;color:#fff;}
+  .delivery-intro p{font-size:13px;line-height:1.7;color:#D8F0E2;margin:0;}
+  .delivery-list{display:grid;gap:10px;}
+  .delivery-item{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px 18px;}
+  .delivery-item strong{display:block;color:var(--brand-deep);font-family:var(--serif);font-size:18px;margin-bottom:4px;}
+  .delivery-item span{display:block;color:var(--muted);font-size:12px;line-height:1.5;}
+  .order-date{margin-top:18px;}
+  .order-date label{display:block;color:var(--brand-deep);font-size:11px;font-weight:700;margin-bottom:7px;}
+  .order-date input{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--muted);padding:11px 12px;font:inherit;font-size:12px;}
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--brand-deep);color:#F1FBF5;padding:12px 22px;border-radius:100px;font-size:13px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:50;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
@@ -358,6 +371,7 @@
     .cat-strip{gap:10px;}
     .logo-link img{height:105px;width:150px;}
   }
+  @media (max-width:760px){.delivery-panel{grid-template-columns:1fr;padding:18px;}.delivery-intro{padding:24px;}}
   @media (prefers-reduced-motion:reduce){ *{transition:none !important;} }
 </style>
 </head>
@@ -373,6 +387,8 @@
   </a>
   <nav class="nav">
     <a href="#catalogo">Catálogo</a>
+    <a href="#como-pedir">Cómo pedir</a>
+    <a href="#pedidos">Pedidos</a>
     <a href="#historia">Nuestra historia</a>
     <a href="#visitanos">Visítanos</a>
     <a href="#especiales">Especiales</a>
@@ -444,6 +460,21 @@
   <a href="#visitanos"><span class="qa-num">03</span>Visítanos</a>
   <a href="#catalogo"><span class="qa-num">04</span>Ver catálogo</a>
 </div>
+
+<section class="section" id="pedidos">
+  <div class="section-head">
+    <div><p class="eyebrow">Pedidos y entrega</p><h2>Lo coordinamos <span class="script">contigo.</span></h2></div>
+    <p class="section-intro">Elige recojo o delivery según la distancia y confirma los detalles por WhatsApp.</p>
+  </div>
+  <div class="delivery-panel">
+    <div class="delivery-intro"><p class="eyebrow" style="color:#D8F0E2;">Villa El Salvador · Lima</p><h3>Tu pedido, preparado con cariño.</h3><p>Trabajamos por pedido para cuidar cada detalle. Puedes recogerlo o coordinamos el delivery según tu zona.</p></div>
+    <div class="delivery-list">
+      <div class="delivery-item"><strong>Recojo</strong><span>Ven a recoger tu pedido en Villa El Salvador. Coordinamos contigo el horario por WhatsApp.</span></div>
+      <div class="delivery-item"><strong>Delivery</strong><span>Podemos llevarlo según la distancia. El costo y la disponibilidad se confirman antes de cerrar el pedido.</span></div>
+      <div class="delivery-item"><strong>Atención</strong><span>Estamos disponibles de 7:00 a. m. a 5:00 p. m. para coordinar tus pedidos.</span></div>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="especiales" style="padding-top:28px;padding-bottom:20px;">
   <div class="specials-section">
@@ -524,8 +555,8 @@
   </div>
   <div class="steps">
     <div class="step-card"><span class="step-num">01</span><h3>Elige</h3><p>Revisa el catálogo y decide el postre y la presentación que quieres.</p></div>
-    <div class="step-card"><span class="step-num">02</span><h3>Escríbenos</h3><p>Pulsa "Pedir por WhatsApp" y recibirás un mensaje listo con tu elección.</p></div>
-    <div class="step-card"><span class="step-num">03</span><h3>Confirma</h3><p>Coordinamos contigo los detalles finales de disponibilidad y entrega.</p></div>
+    <div class="step-card"><span class="step-num">02</span><h3>Escríbenos</h3><p>Pulsa “Pedir por WhatsApp” y envíanos el producto, la presentación y la fecha deseada.</p></div>
+    <div class="step-card"><span class="step-num">03</span><h3>Confirma</h3><p>Coordinamos disponibilidad, recojo o delivery y los detalles finales de tu pedido.</p></div>
   </div>
 </section>
 
@@ -549,8 +580,8 @@
     </div>
     <div class="visit-card">
       <span class="visit-num">Horarios</span>
-      <h3>7:00 a. m. – 6:00 p. m.</h3>
-      <p>Pedidos pequeños con al menos 2 días de anticipación. Pedidos personalizados o en mayor cantidad se coordinan según el caso.</p>
+      <h3>7:00 a. m. – 5:00 p. m.</h3>
+      <p>Coordinamos disponibilidad y tiempos de preparación según cada pedido.</p>
       <a href="https://wa.me/51954525535?text=Hola%2C%20quiero%20consultar%20disponibilidad" target="_blank" rel="noreferrer">Consultar disponibilidad ↗</a>
     </div>
   </div>
@@ -581,7 +612,7 @@
     </div>
     <div class="footer-col">
       <h4>Visítanos</h4>
-      <p>Villa El Salvador, Lima<br>Lunes a Domingo<br>7:00 a. m. – 6:00 p. m.</p>
+      <p>Villa El Salvador, Lima<br>Lunes a Domingo<br>7:00 a. m. – 5:00 p. m.</p>
     </div>
     <div class="footer-col">
       <h4>Contacto</h4>
@@ -615,6 +646,7 @@
         <div class="size-heading" id="product-size-heading">Elige tu presentación</div>
         <div class="size-options" id="product-size-options"></div>
         <div class="selected-price" id="product-selected-price"></div>
+        <div class="order-date"><label for="product-order-date">Fecha deseada (opcional)</label><input id="product-order-date" type="date"></div>
         <details class="product-details" open>
           <summary>＋ Más información</summary>
           <div id="product-modal-details"></div>
@@ -686,6 +718,7 @@
           <h3 class="card-title">${product.name}</h3>
           <p class="card-description">${product.description}</p>
           <div class="prices">${product.prices.map(price => `<div class="price-row"><span class="price-label">${price[0]}</span><span class="price">${price[1]}</span></div>`).join('')}</div>
+          <span class="availability ${product.seasonal ? 'is-consult' : ''}">${product.seasonal ? 'Consultar disponibilidad' : 'Disponible por pedido'}</span>
           <button class="card-action" type="button" data-product-id="${product.id}">Ver detalles →</button>
         </div>
       </article>`).join('');
@@ -705,6 +738,7 @@
   const productSizeHeading = document.getElementById('product-size-heading');
   const productSelectedPrice = document.getElementById('product-selected-price');
   let selectedPrice = null;
+  const productOrderDate = document.getElementById('product-order-date');
   const productModalOrder = document.getElementById('product-modal-order');
   const productModalClose = document.getElementById('product-modal-close');
   let activeProduct = null;
@@ -716,6 +750,8 @@
     productModalCat.textContent = product.label;
     productModalTitle.textContent = product.name;
     productModalPrice.textContent = `Desde ${product.prices[0][1]}`;
+    productOrderDate.value = '';
+    productOrderDate.min = new Date().toISOString().split('T')[0];
     productModalDescription.textContent = product.description;
     if(product.gallery){
       const galleryItems = product.gallery.map(item => galleryItemData(item, product));
@@ -779,11 +815,12 @@
   productModalClose.addEventListener('click', closeProduct);
   productModal.addEventListener('click', event => { if(event.target === productModal) closeProduct(); });
   document.addEventListener('keydown', event => { if(event.key === 'Escape') closeProduct(); });
-  productModalOrder.addEventListener('click', () => { if(activeProduct) order(activeProduct.name, selectedPrice ? selectedPrice[0] : '', selectedPrice ? selectedPrice[1] : ''); });
+  productModalOrder.addEventListener('click', () => { if(activeProduct) order(activeProduct.name, selectedPrice ? selectedPrice[0] : '', selectedPrice ? selectedPrice[1] : '', productOrderDate.value); });
 
-  function order(product, presentation = '', price = ''){
+  function order(product, presentation = '', price = '', date = ''){
     const extra = presentation ? ` Me interesa la presentación ${presentation}${price ? ` (${price})` : ''}.` : '';
-    const message = `Hola, me interesa pedir ${product}.${extra} ¿Podrían confirmarme disponibilidad, ingredientes, posibles alérgenos y detalles de entrega, por favor?`;
+    const dateExtra = date ? ` Lo necesito para el ${date}.` : '';
+    const message = `Hola, me interesa pedir ${product}.${extra}${dateExtra} ¿Podrían confirmarme disponibilidad, ingredientes, posibles alérgenos y si sería por recojo o delivery, por favor?`;
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     toast.classList.add('show');
     window.open(url, '_blank', 'noopener,noreferrer');
