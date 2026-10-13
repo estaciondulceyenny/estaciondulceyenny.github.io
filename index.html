@@ -163,6 +163,10 @@
   .feat-card:hover{transform:translateY(-5px);box-shadow:0 24px 44px -20px rgba(31,75,61,.25);}
   .feat-photo{position:relative;aspect-ratio:1/1;background:var(--brand-pale);}
   .feat-photo img{width:100%;height:100%;object-fit:cover;}
+  .feat-photo .swap-secondary,.card-photo .swap-secondary{position:absolute;inset:0;opacity:0;transition:opacity .28s ease;}
+  .feat-photo:hover .swap-secondary,.card-photo:hover .swap-secondary{opacity:1;}
+  .photo-swap-hint{position:absolute;right:12px;bottom:12px;z-index:3;background:rgba(255,255,255,.9);color:var(--brand-deep);border-radius:100px;padding:6px 9px;font-size:9px;font-weight:700;letter-spacing:.02em;opacity:0;transform:translateY(5px);transition:opacity .25s ease,transform .25s ease;}
+  .feat-photo:hover .photo-swap-hint,.card-photo:hover .photo-swap-hint{opacity:1;transform:translateY(0);}
   .feat-photo .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--script);font-size:30px;color:var(--brand);}
   .feat-body{padding:16px 16px 18px;}
   .feat-body .cat{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
@@ -291,9 +295,18 @@
   .product-sheet-visual{min-height:360px;background:linear-gradient(145deg,#E8F7EF,#9ED8B3);display:flex;align-items:center;justify-content:center;padding:30px;position:relative;overflow:hidden;}
   .product-sheet-visual::before{content:"✦";position:absolute;right:-5px;top:-50px;font-family:var(--serif);font-size:180px;color:rgba(47,118,88,.1);}
   .product-sheet-visual > img{width:100%;height:100%;min-height:290px;object-fit:cover;border-radius:20px;}
-  .product-gallery{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1;}
-  .product-gallery > img,.product-gallery > .fallback{width:100%;height:100%;min-height:290px;object-fit:cover;border-radius:20px;}
-  .product-gallery > .fallback{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.3),transparent 24%),linear-gradient(145deg,#76D39B,#2F7658);}
+  .product-carousel{width:100%;min-height:290px;position:relative;z-index:1;}
+  .product-carousel img,.product-carousel .fallback{width:100%;height:100%;min-height:290px;object-fit:cover;border-radius:20px;display:none;}
+  .product-carousel img.is-active,.product-carousel .fallback.is-active{display:flex;}
+  .product-carousel .fallback{align-items:center;justify-content:center;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.3),transparent 24%),linear-gradient(145deg,#76D39B,#2F7658);}
+  .carousel-control{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:rgba(255,255,255,.9);color:var(--brand-deep);font-size:24px;line-height:1;box-shadow:0 8px 20px rgba(47,118,88,.18);}
+  .carousel-control:hover{background:#fff;transform:translateY(-50%) scale(1.05);}
+  .carousel-control.prev{left:14px;}
+  .carousel-control.next{right:14px;}
+  .carousel-dots{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:3;display:flex;gap:6px;}
+  .carousel-dot{width:8px;height:8px;border:0;border-radius:50%;background:rgba(255,255,255,.6);padding:0;}
+  .carousel-dot.is-active{background:#fff;box-shadow:0 0 0 2px rgba(47,118,88,.25);}
+  .product-gallery{display:none;}
   .product-sheet-visual .fallback{width:100%;height:100%;min-height:290px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.3),transparent 24%),linear-gradient(145deg,#76D39B,#2F7658);}
   .product-sheet-visual .mono{font-family:var(--serif);font-size:clamp(25px,4vw,42px);font-weight:600;color:#fff;text-align:center;}
   .product-sheet-copy{padding:48px 46px 42px;}
@@ -320,7 +333,7 @@
   .product-detail-row span{color:var(--muted);text-align:right;}
   .product-sheet-close{position:absolute;right:18px;top:14px;border:0;background:rgba(255,255,255,.8);color:var(--brand-deep);width:34px;height:34px;border-radius:50%;font-size:20px;line-height:1;z-index:2;}
   .product-sheet-close:hover{background:var(--brand-pale);}
-  @media (max-width:700px){.product-sheet{grid-template-columns:1fr;max-height:92vh;}.product-sheet-visual{min-height:210px;}.product-gallery{grid-template-columns:1fr 1fr;gap:8px;}.product-gallery > img,.product-gallery > .fallback{min-height:160px;border-radius:14px;}.product-sheet-visual .fallback{min-height:160px;}.product-sheet-copy{padding:30px 24px 26px;}}
+  @media (max-width:700px){.product-sheet{grid-template-columns:1fr;max-height:92vh;}.product-sheet-visual{min-height:210px;}.product-gallery{grid-template-columns:1fr 1fr;gap:8px;}.product-carousel img,.product-carousel .fallback{min-height:160px;border-radius:14px;}.product-sheet-visual .fallback{min-height:160px;}.product-sheet-copy{padding:30px 24px 26px;}}
 
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--brand-deep);color:#F1FBF5;padding:12px 22px;border-radius:100px;font-size:13px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:50;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
@@ -639,10 +652,17 @@
       <div class="fallback" style="display:none"><span class="mono">${monoText}</span></div>`;
   }
 
+  function cardImageMarkup(product){
+    if(!product.gallery) return imgWithFallback(product.img, product.name, product.name.slice(0,2));
+    return `<img class="swap-primary" src="img/${product.gallery[0]}" alt="${product.name}">
+      <img class="swap-secondary" src="img/${product.gallery[1]}" alt="${product.name} · segunda foto">
+      <span class="photo-swap-hint">Pasa el cursor</span>`;
+  }
+
   const featGrid = document.getElementById('feat-grid');
   featGrid.innerHTML = products.filter(p => p.featured).map(p => `
     <a class="feat-card" href="https://wa.me/${phone}?text=${encodeURIComponent('Hola, me interesa pedir ' + p.name + '. ¿Podrían confirmarme disponibilidad y detalles, por favor?')}" target="_blank" rel="noreferrer">
-      <div class="feat-photo">${imgWithFallback(p.img, p.name, p.name.slice(0,2))}</div>
+      <div class="feat-photo">${cardImageMarkup(p)}</div>
       <div class="feat-body"><span class="cat">${p.label}</span><h3>${p.name}</h3><span class="price">Desde ${p.prices[0][1]}</span></div>
     </a>`).join('');
 
@@ -657,7 +677,7 @@
       <article class="card ${product.seasonal ? 'is-seasonal' : ''}" data-product-id="${product.id}">
         <div class="card-photo">
           <span class="cat-tag">${product.label}</span>
-          ${imgWithFallback(product.img, product.name, product.name.slice(0,2))}
+          ${cardImageMarkup(product)}
         </div>
         <div class="card-body">
           <h3 class="card-title">${product.name}</h3>
@@ -694,7 +714,36 @@
     productModalTitle.textContent = product.name;
     productModalPrice.textContent = `Desde ${product.prices[0][1]}`;
     productModalDescription.textContent = product.description;
-    productModalVisual.innerHTML = product.gallery ? `<div class="product-gallery">${product.gallery.map((path, index) => imgWithFallback(path, `${product.name} · foto ${index + 1}`, product.name)).join('')}</div>` : imgWithFallback(product.img, product.name, product.name);
+    productModalVisual.innerHTML = product.gallery ? `<div class="product-carousel">${product.gallery.map((path, index) => `<img class="${index === 0 ? 'is-active' : ''}" src="img/${path}" alt="${product.name} · foto ${index + 1}">`).join('')}<button class="carousel-control prev" type="button" aria-label="Foto anterior" data-gallery-dir="-1">‹</button><button class="carousel-control next" type="button" aria-label="Siguiente foto" data-gallery-dir="1">›</button><div class="carousel-dots">${product.gallery.map((_, index) => `<button class="carousel-dot ${index === 0 ? 'is-active' : ''}" type="button" aria-label="Ver foto ${index + 1}" data-gallery-index="${index}"></button>`).join('')}</div></div>` : imgWithFallback(product.img, product.name, product.name);
+    if(product.gallery){
+      let galleryIndex = 0;
+      const carousel = productModalVisual.querySelector('.product-carousel');
+      const galleryImages = carousel.querySelectorAll('img');
+      const galleryDots = carousel.querySelectorAll('.carousel-dot');
+      const updateGallery = () => {
+        galleryImages.forEach((img, index) => img.classList.toggle('is-active', index === galleryIndex));
+        galleryDots.forEach((dot, index) => dot.classList.toggle('is-active', index === galleryIndex));
+      };
+      carousel.querySelectorAll('[data-gallery-dir]').forEach(button => button.addEventListener('click', event => {
+        event.stopPropagation();
+        galleryIndex = (galleryIndex + Number(button.dataset.galleryDir) + galleryImages.length) % galleryImages.length;
+        updateGallery();
+      }));
+      galleryDots.forEach(dot => dot.addEventListener('click', event => {
+        event.stopPropagation();
+        galleryIndex = Number(dot.dataset.galleryIndex);
+        updateGallery();
+      }));
+      const galleryKeyHandler = event => {
+        if(!productModal.classList.contains('is-open') || !activeProduct || !activeProduct.gallery) return;
+        if(event.key === 'ArrowLeft' || event.key === 'ArrowRight'){
+          galleryIndex = (galleryIndex + (event.key === 'ArrowRight' ? 1 : -1) + galleryImages.length) % galleryImages.length;
+          updateGallery();
+        }
+      };
+      document.addEventListener('keydown', galleryKeyHandler);
+      productModalClose.addEventListener('click', () => document.removeEventListener('keydown', galleryKeyHandler), {once:true});
+    }
     productModalDetails.innerHTML = (product.details || []).map(detail => `<div class="product-detail-row"><strong>${detail[0]}</strong><span>${detail[1]}</span></div>`).join('');
     productDetailsBox.style.display = product.details && product.details.length ? '' : 'none';
     productSizeOptions.innerHTML = product.prices.map((price, index) => `<button class="size-option ${index === 0 ? 'active' : ''}" type="button" data-price-index="${index}">${price[0]}</button>`).join('');
