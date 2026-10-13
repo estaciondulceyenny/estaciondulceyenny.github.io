@@ -352,6 +352,10 @@
   .location-details strong{display:block;color:var(--brand-deep);font-family:var(--serif);font-size:17px;margin-bottom:3px;}
   .location-details span{display:block;color:var(--muted);font-size:12px;line-height:1.5;}
   .location-copy .btn{align-self:flex-start;}
+  .location-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+  .location-actions .btn{align-self:flex-start;}
+  .location-actions .btn-secondary{background:#fff;color:var(--brand-deep);border:1.5px solid var(--line);}
+  .location-actions .btn-secondary:hover{background:var(--brand-pale);transform:translateY(-2px);}
   .availability{display:inline-flex;align-items:center;gap:6px;color:var(--brand-deep);background:var(--brand-pale);border:1px solid var(--line);border-radius:100px;padding:6px 9px;font-size:10px;font-weight:700;margin-top:12px;}
   .availability.is-consult{background:#FFF7D8;border-color:#E8D37A;color:#735C08;}
   .delivery-panel{background:var(--brand-pale);border:1px solid var(--line);border-radius:24px;padding:30px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:stretch;}
@@ -390,7 +394,7 @@
     .cat-strip{gap:10px;}
     .logo-link img{height:105px;width:150px;}
   }
-  @media (max-width:760px){.delivery-panel{grid-template-columns:1fr;padding:18px;}.delivery-intro{padding:24px;}.location-section{grid-template-columns:1fr;}.location-map{min-height:270px;}.location-copy{padding:34px 26px;}}
+  @media (max-width:760px){.delivery-panel{grid-template-columns:1fr;padding:18px;}.delivery-intro{padding:24px;}.location-section{grid-template-columns:1fr;}.location-map{min-height:270px;}.location-copy{padding:34px 26px;}.location-actions{flex-direction:column;align-items:stretch;}.location-actions .btn{width:100%;justify-content:center;}}
   @media (prefers-reduced-motion:reduce){ *{transition:none !important;} }
 </style>
 </head>
@@ -581,23 +585,22 @@
 
 <section class="section" id="visitanos">
   <div class="section-head">
-    <div><p class="eyebrow">Visítanos y recibe</p><h2>Encuéntranos <span class="script">cerca.</span></h2></div>
-    <p class="section-intro">Estamos dentro de un mercado en Villa El Salvador. Puedes visitarnos, conocernos y coordinar tu pedido directamente con nosotros.</p>
+    <div><p class="eyebrow">Encuéntranos</p><h2>Visítanos en <span class="script">Mercado El Sol.</span></h2></div>
+    <p class="section-intro">Estamos dentro del Mercado El Sol, en Villa El Salvador. Puedes visitarnos, conocer nuestro puesto y consultar directamente por nuestros postres. También puedes coordinar el recojo de tu pedido o solicitar delivery según la distancia.</p>
   </div>
   <div class="location-section">
     <div class="location-map">
       <iframe title="Mapa de Mercado El Sol en Villa El Salvador" src="https://www.google.com/maps?q=Mercado+El+Sol,+Villa+El+Salvador&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <a class="location-map-link" href="https://maps.app.goo.gl/T29Bz9iM5QTX18ve8" target="_blank" rel="noreferrer">Abrir en Google Maps ↗</a>
     </div>
     <div class="location-copy">
       <p class="eyebrow">Estación Dulce Yenny</p>
-      <h3>Ven a visitarnos.</h3>
+      <h3>Te esperamos en nuestro puesto.</h3>
       <div class="location-details">
         <div><strong>Zona</strong><span>Mercado El Sol · Av. El Sol S/N, Villa El Salvador</span></div>
         <div><strong>Horario de atención</strong><span>7:00 a. m. – 5:00 p. m.</span></div>
-        <div><strong>Visita y recojo</strong><span>Visítanos en el mercado y escríbenos para indicarte el puesto exacto.</span></div>
+        <div><strong>Visita y recojo</strong><span>Conoce nuestro puesto y coordina el recojo de tu pedido. También puedes consultar por delivery según la distancia.</span></div>
       </div>
-      <a class="btn btn-primary" href="https://wa.me/51954525535?text=Hola%2C%20quiero%20visitar%20el%20mercado%20y%20conocer%20el%20puesto%20de%20Estaci%C3%B3n%20Dulce%20Yenny%20en%20Villa%20El%20Salvador" target="_blank" rel="noreferrer">Visítanos y coordina ↗</a>
+      <div class="location-actions"><a class="btn btn-primary" href="https://maps.app.goo.gl/T29Bz9iM5QTX18ve8" target="_blank" rel="noopener noreferrer">Ver ubicación del mercado ↗</a><a class="btn btn-secondary" href="https://wa.me/51954525535?text=Hola%2C%20quisiera%20indicaciones%20para%20encontrar%20su%20puesto%20dentro%20del%20Mercado%20El%20Sol.%20%C2%BFMe%20podr%C3%ADan%20orientar%2C%20por%20favor%3F" target="_blank" rel="noopener noreferrer">Escribir para indicaciones ↗</a></div>
     </div>
   </div>
 </section>
