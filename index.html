@@ -333,6 +333,21 @@
   .product-sheet-close:hover{background:var(--brand-pale);}
   @media (max-width:700px){.product-sheet{grid-template-columns:1fr;max-height:94vh;}.product-sheet-visual{min-height:360px;padding:18px;}.product-carousel{min-height:320px;}.product-carousel img,.product-carousel .fallback{min-height:320px;border-radius:14px;}.product-sheet-visual .fallback{min-height:320px;}.product-sheet-copy{padding:30px 24px 26px;}}
 
+  .location-section{display:grid;grid-template-columns:1.12fr .88fr;background:var(--cream);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:0 16px 40px rgba(47,118,88,.08);}
+  .location-map{min-height:360px;position:relative;overflow:hidden;background-color:#E7F6ED;background-image:linear-gradient(28deg,transparent 46%,rgba(255,255,255,.95) 47%,rgba(255,255,255,.95) 51%,transparent 52%),linear-gradient(122deg,transparent 46%,rgba(255,255,255,.9) 47%,rgba(255,255,255,.9) 51%,transparent 52%),linear-gradient(8deg,transparent 47%,rgba(157,216,179,.75) 48%,rgba(157,216,179,.75) 52%,transparent 53%);background-size:150px 130px,190px 160px,230px 210px;}
+  .location-map::before,.location-map::after{content:"";position:absolute;border-radius:50%;background:rgba(157,216,179,.55);filter:blur(1px);}
+  .location-map::before{width:180px;height:110px;left:-30px;top:30px;transform:rotate(-18deg);}
+  .location-map::after{width:220px;height:130px;right:-40px;bottom:24px;transform:rotate(15deg);}
+  .map-label{position:absolute;color:rgba(47,118,88,.58);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;z-index:1;}
+  .map-label.one{left:18%;top:27%;}.map-label.two{right:12%;top:18%;}.map-label.three{left:30%;bottom:18%;}
+  .map-pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);z-index:2;width:34px;height:34px;border-radius:50% 50% 50% 0;background:var(--peach);border:4px solid #fff;box-shadow:0 8px 18px rgba(112,84,0,.25);rotate:-45deg;}
+  .map-pin::after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#fff;left:8px;top:8px;}
+  .location-copy{padding:52px 48px;display:flex;flex-direction:column;justify-content:center;}
+  .location-copy h3{font-family:var(--serif);font-size:clamp(30px,4vw,46px);line-height:1.05;color:var(--brand-deep);margin:8px 0 24px;}
+  .location-details{display:grid;gap:17px;margin-bottom:24px;}
+  .location-details strong{display:block;color:var(--brand-deep);font-family:var(--serif);font-size:17px;margin-bottom:3px;}
+  .location-details span{display:block;color:var(--muted);font-size:12px;line-height:1.5;}
+  .location-copy .btn{align-self:flex-start;}
   .availability{display:inline-flex;align-items:center;gap:6px;color:var(--brand-deep);background:var(--brand-pale);border:1px solid var(--line);border-radius:100px;padding:6px 9px;font-size:10px;font-weight:700;margin-top:12px;}
   .availability.is-consult{background:#FFF7D8;border-color:#E8D37A;color:#735C08;}
   .delivery-panel{background:var(--brand-pale);border:1px solid var(--line);border-radius:24px;padding:30px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:stretch;}
@@ -371,7 +386,7 @@
     .cat-strip{gap:10px;}
     .logo-link img{height:105px;width:150px;}
   }
-  @media (max-width:760px){.delivery-panel{grid-template-columns:1fr;padding:18px;}.delivery-intro{padding:24px;}}
+  @media (max-width:760px){.delivery-panel{grid-template-columns:1fr;padding:18px;}.delivery-intro{padding:24px;}.location-section{grid-template-columns:1fr;}.location-map{min-height:270px;}.location-copy{padding:34px 26px;}}
   @media (prefers-reduced-motion:reduce){ *{transition:none !important;} }
 </style>
 </head>
@@ -562,27 +577,22 @@
 
 <section class="section" id="visitanos">
   <div class="section-head">
-    <div><p class="eyebrow">Visítanos y recibe</p><h2>Tu pedido, <span class="script">cerca.</span></h2></div>
-    <p class="section-intro">Estamos en Villa El Salvador, Lima. Coordinamos la entrega según tu zona, o puedes recoger tu pedido directamente en nuestro local.</p>
+    <div><p class="eyebrow">Recojo y entrega</p><h2>Encuéntranos <span class="script">cerca.</span></h2></div>
+    <p class="section-intro">Estamos en Villa El Salvador. La dirección exacta se coordina de forma privada al confirmar tu pedido.</p>
   </div>
-  <div class="visit-grid">
-    <div class="visit-card">
-      <span class="visit-num">Recojo en local</span>
-      <h3>Villa El Salvador</h3>
-      <p>Escríbenos para coordinar el horario de recojo de tu pedido.</p>
-      <a href="https://wa.me/51954525535?text=Hola%2C%20quiero%20coordinar%20el%20recojo%20de%20mi%20pedido" target="_blank" rel="noreferrer">Coordinar recojo ↗</a>
+  <div class="location-section">
+    <div class="location-map" role="img" aria-label="Mapa ilustrativo de Villa El Salvador con ubicación aproximada">
+      <span class="map-label one">Villa El Salvador</span><span class="map-label two">Lima Sur</span><span class="map-label three">Zona de recojo</span><span class="map-pin" aria-hidden="true"></span>
     </div>
-    <div class="visit-card">
-      <span class="visit-num">Delivery cercano</span>
-      <h3>Villa El Salvador y alrededores</h3>
-      <p>Hacemos entregas en Villa El Salvador y distritos cercanos. El costo se confirma según la zona.</p>
-      <a href="https://wa.me/51954525535?text=Hola%2C%20quiero%20consultar%20el%20delivery%20a%20mi%20zona" target="_blank" rel="noreferrer">Consultar delivery ↗</a>
-    </div>
-    <div class="visit-card">
-      <span class="visit-num">Horarios</span>
-      <h3>7:00 a. m. – 5:00 p. m.</h3>
-      <p>Coordinamos disponibilidad y tiempos de preparación según cada pedido.</p>
-      <a href="https://wa.me/51954525535?text=Hola%2C%20quiero%20consultar%20disponibilidad" target="_blank" rel="noreferrer">Consultar disponibilidad ↗</a>
+    <div class="location-copy">
+      <p class="eyebrow">Estación Dulce Yenny</p>
+      <h3>Tu pedido, cerca de ti.</h3>
+      <div class="location-details">
+        <div><strong>Zona</strong><span>Villa El Salvador, Lima</span></div>
+        <div><strong>Horario de atención</strong><span>7:00 a. m. – 5:00 p. m.</span></div>
+        <div><strong>Entrega</strong><span>Recojo coordinado o delivery según la distancia.</span></div>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/51954525535?text=Hola%2C%20quiero%20coordinar%20el%20recojo%20de%20mi%20pedido%20en%20Villa%20El%20Salvador" target="_blank" rel="noreferrer">Coordinar recojo ↗</a>
     </div>
   </div>
 </section>
