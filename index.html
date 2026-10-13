@@ -631,9 +631,9 @@
 
   const products = [
     { id:'alfajores', category:'dulces', label:'Dulces', img:'alfajores-plato.jpg', gallery:['alfajores-plato.jpg','alfajores-envase.jpg'], name:'Alfajores', description:'Bocados suaves con relleno dulce, ideales para compartir o regalar.', prices:[['1/4 de docena','S/ 6.00'],['1/2 docena','S/ 11.00'],['1 docena','S/ 20.00']], featured:true, details:[['Presentaciones','1/4, 1/2 y 1 docena'],['Ideal para','Compartir o regalar']] },
-    { id:'crema-volteada', category:'tortas', label:'Postres', img:'crema-volteada.jpg', name:'Crema volteada', description:'Postre casero, suave y cremoso, con el toque caramelizado de siempre.', prices:[['Tamaño','S/ 40.00']], details:[['Característica','Textura suave y cremosa'],['Presentación','Tamaño completo']] },
+    { id:'crema-volteada', category:'tortas', label:'Postres', img:'crema-volteada-real.jpg', name:'Crema volteada', description:'Postre casero, suave y cremoso, con el toque caramelizado de siempre.', prices:[['Tamaño','S/ 40.00']], details:[['Característica','Textura suave y cremosa'],['Presentación','Tamaño completo']] },
     { id:'tarta-fresa', category:'tortas', label:'Tartas', img:'tarta-fresa.jpg', name:'Tarta de fresa', description:'Base delicada y una cubierta fresca de fresa para una mesa especial.', prices:[['Tarta','S/ 50.00']], featured:true, details:[['Base','Delicada y casera'],['Cubierta','Fresa fresca']] },
-    { id:'empanadas-boda', category:'dulces', label:'Dulces', img:'empanadas-boda.jpg', name:'Empanadas de boda', description:'Pequeñas, doraditas y perfectas para acompañar una celebración.', prices:[['1/4 de docena','S/ 6.00'],['1/2 docena','S/ 11.00'],['1 docena','S/ 20.00']] },
+    { id:'empanadas-boda', category:'dulces', label:'Dulces', img:'empanadas-boda.jpg', name:'Empanadas', description:'Elige tu variedad de empanada: de boda, de ajonjolí o con grajeas.', gallery:[{src:'empanadas-boda.jpg',name:'Empanada de boda',description:'Empanada doradita y casera, con su acabado tradicional, ideal para compartir o regalar.'},{src:'empanadas-ajonjoli.jpg',name:'Empanada de ajonjolí',description:'Empanada horneada con una cubierta doradita y semillas de ajonjolí, con sabor casero.'},{src:'empanadas-grajeas.jpg',name:'Empanada con grajeas',description:'Empanada dulce y divertida, decorada con coloridas grajeas para una presentación especial.'}], prices:[['1/4 de docena','S/ 6.00'],['1/2 docena','S/ 11.00'],['1 docena','S/ 20.00']] },
     { id:'empanadas-carne', category:'salados', label:'Salados', img:'empanadas-carne.jpg', name:'Empanadas mixtas o de carne', description:'Una opción salada para compartir en reuniones, loncheras o celebraciones.', prices:[['1/4 de docena','S/ 15.00'],['1/2 docena','S/ 25.00'],['1 docena','S/ 48.00']] },
     { id:'cheesecake', category:'tortas', label:'Postres', img:'cheesecake.jpg', name:'Cheesecake', description:'Cremoso, delicado y listo para convertirse en el centro de la mesa.', prices:[['Molde pequeño','S/ 60.00'],['Molde grande','S/ 80.00']], featured:true, details:[['Presentaciones','Molde pequeño y grande'],['Característica','Textura cremosa y delicada']] },
     { id:'pay-manzana', category:'tortas', label:'Pays', img:'pay-manzana.jpg', name:'Pay de manzana', description:'Un clásico de sabor casero, con manzana y masa doradita.', prices:[['Molde pequeño','S/ 25.00'],['Molde mediano','S/ 35.00']] },
@@ -650,11 +650,16 @@
       <div class="fallback" style="display:none"><span class="mono">${monoText}</span></div>`;
   }
 
+  function galleryItemData(item, product){
+    return typeof item === 'string' ? {src:item, name:product.name, description:product.description} : item;
+  }
+
   function cardImageMarkup(product){
     if(!product.gallery) return imgWithFallback(product.img, product.name, product.name.slice(0,2));
-    return `<img class="swap-primary" src="img/${product.gallery[0]}" alt="${product.name}">
-      <img class="swap-secondary" src="img/${product.gallery[1]}" alt="${product.name} · segunda foto">
-`;
+    const first = galleryItemData(product.gallery[0], product);
+    const second = galleryItemData(product.gallery[1], product);
+    return `<img class="swap-primary" src="img/${first.src}" alt="${first.name}">
+      <img class="swap-secondary" src="img/${second.src}" alt="${second.name}">`;
   }
 
   const featGrid = document.getElementById('feat-grid');
@@ -712,8 +717,9 @@
     productModalTitle.textContent = product.name;
     productModalPrice.textContent = `Desde ${product.prices[0][1]}`;
     productModalDescription.textContent = product.description;
-    productModalVisual.innerHTML = product.gallery ? `<div class="product-carousel">${product.gallery.map((path, index) => `<img class="${index === 0 ? 'is-active' : ''}" src="img/${path}" alt="${product.name} · foto ${index + 1}">`).join('')}<button class="carousel-control prev" type="button" aria-label="Foto anterior" data-gallery-dir="-1">‹</button><button class="carousel-control next" type="button" aria-label="Siguiente foto" data-gallery-dir="1">›</button><div class="carousel-dots">${product.gallery.map((_, index) => `<button class="carousel-dot ${index === 0 ? 'is-active' : ''}" type="button" aria-label="Ver foto ${index + 1}" data-gallery-index="${index}"></button>`).join('')}</div></div>` : imgWithFallback(product.img, product.name, product.name);
     if(product.gallery){
+      const galleryItems = product.gallery.map(item => galleryItemData(item, product));
+      productModalVisual.innerHTML = `<div class="product-carousel">${galleryItems.map((item, index) => `<img class="${index === 0 ? 'is-active' : ''}" src="img/${item.src}" alt="${item.name}">`).join('')}<button class="carousel-control prev" type="button" aria-label="Foto anterior" data-gallery-dir="-1">‹</button><button class="carousel-control next" type="button" aria-label="Siguiente foto" data-gallery-dir="1">›</button><div class="carousel-dots">${galleryItems.map((_, index) => `<button class="carousel-dot ${index === 0 ? 'is-active' : ''}" type="button" aria-label="Ver foto ${index + 1}" data-gallery-index="${index}"></button>`).join('')}</div></div>`;
       let galleryIndex = 0;
       const carousel = productModalVisual.querySelector('.product-carousel');
       const galleryImages = carousel.querySelectorAll('img');
@@ -721,7 +727,10 @@
       const updateGallery = () => {
         galleryImages.forEach((img, index) => img.classList.toggle('is-active', index === galleryIndex));
         galleryDots.forEach((dot, index) => dot.classList.toggle('is-active', index === galleryIndex));
+        productModalTitle.textContent = galleryItems[galleryIndex].name;
+        productModalDescription.textContent = galleryItems[galleryIndex].description;
       };
+      updateGallery();
       carousel.querySelectorAll('[data-gallery-dir]').forEach(button => button.addEventListener('click', event => {
         event.stopPropagation();
         galleryIndex = (galleryIndex + Number(button.dataset.galleryDir) + galleryImages.length) % galleryImages.length;
@@ -741,6 +750,8 @@
       };
       document.addEventListener('keydown', galleryKeyHandler);
       productModalClose.addEventListener('click', () => document.removeEventListener('keydown', galleryKeyHandler), {once:true});
+    } else {
+      productModalVisual.innerHTML = imgWithFallback(product.img, product.name, product.name);
     }
     productModalDetails.innerHTML = (product.details || []).map(detail => `<div class="product-detail-row"><strong>${detail[0]}</strong><span>${detail[1]}</span></div>`).join('');
     productDetailsBox.style.display = product.details && product.details.length ? '' : 'none';
