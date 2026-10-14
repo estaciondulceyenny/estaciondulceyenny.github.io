@@ -1,24 +1,17 @@
 # Estación Dulce Yenny · Catálogo web
 
-Proyecto independiente para publicar en GitHub Pages. No modifica ni depende del repositorio anterior.
+Sitio estático, adaptable a móviles y publicado con GitHub Pages.
+
+## Sitio público
+
+https://estaciondulceyenny26-collab.github.io/estacion-dulce-yenny/
 
 ## Archivos principales
 
-- `index.html`: catálogo completo en español, responsive y sin frameworks.
-- `logo-web.png`: logo original con únicamente el fondo sobrante retirado para integrarlo en la página.
-- `.nojekyll`: permite que GitHub Pages publique los archivos estáticos directamente.
+- `index.html`: catálogo y página principal.
+- `social-preview-v2.jpg`: tarjeta que aparece al compartir el enlace.
+- `logo-web.png`: logo de Estación Dulce Yenny.
 
-## Crear el repositorio nuevo en GitHub
+## Publicación
 
-1. En GitHub, pulsa **New repository**.
-2. Usa este nombre sugerido: `estacion-dulce-yenny-catalogo`.
-3. Déjalo **Public** y créalo vacío (sin README ni `.gitignore`).
-4. En el repositorio nuevo, pulsa **Add file → Upload files**.
-5. Sube `index.html`, `logo-web.png`, `.nojekyll` y `README.md` desde esta carpeta.
-6. Pulsa **Commit changes**.
-7. Ve a **Settings → Pages**.
-8. En **Build and deployment**, selecciona **Deploy from a branch**, rama `main` y carpeta `/ (root)`.
-9. Guarda y espera unos minutos. La dirección será:
-   `https://TU-USUARIO.github.io/estacion-dulce-yenny-catalogo/`
-
-Importante: sube `index.html` y `logo-web.png` en la raíz del repositorio, no dentro de otra carpeta.
+GitHub Pages publica la rama `main` desde la carpeta raíz del repositorio `estacion-dulce-yenny`.
