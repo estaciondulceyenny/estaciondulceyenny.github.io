@@ -4,7 +4,7 @@ Sitio estático, adaptable a móviles y publicado con GitHub Pages.
 
 ## Sitio público
 
-https://estaciondulceyenny26-collab.github.io/estacion-dulce-yenny/
+https://estaciondulceyenny.github.io/
 
 ## Archivos principales
 
@@ -14,4 +14,4 @@ https://estaciondulceyenny26-collab.github.io/estacion-dulce-yenny/
 
 ## Publicación
 
-GitHub Pages publica la rama `main` desde la carpeta raíz del repositorio `estacion-dulce-yenny`.
+GitHub Pages publica la rama `main` desde la carpeta raíz del repositorio `estaciondulceyenny.github.io`.
